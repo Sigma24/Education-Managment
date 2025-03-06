@@ -6,7 +6,7 @@ import RegistrationForm from './Registration';
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<LoginForm />} />
+      <Route path="/login" element={<LoginForm />} />
       <Route path="/Registration" element={<RegistrationForm />} />
     </Routes>
   );

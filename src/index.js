@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
-
+// import Sum from "./sum"
 
 
 import reportWebVitals from './reportWebVitals';
@@ -14,7 +14,7 @@ root.render(
 
 
 <BrowserRouter>
-      <App /> 
+      <App/> 
     </BrowserRouter>
   </React.StrictMode>
 );

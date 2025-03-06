@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Registration.css";
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
+  const [Data, setFormData] = useState({
     name: "",
     email: "",
     password: "",
@@ -14,15 +14,26 @@ const RegistrationForm = () => {
     dob: "",
   });
 
+
+
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate(); 
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const {  name, value } = e.target;
+    setFormData({ ...Data, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    alert("Registration Successful!");
+    console.log("Form Data Submitted:", Data);
+    setShowModal(true);
+
+   
+    setTimeout(() => {
+      setShowModal(false);
+      navigate("/login"); 
+    }, 2000);
   };
 
   return (
@@ -30,22 +41,13 @@ const RegistrationForm = () => {
       <div className="registration-form">
         <h2 className="text-center mb-4">Register</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          
           <div className="form-group">
             <input
               type="text"
               name="name"
               placeholder="Full Name"
-              value={formData.name}
+              value={Data.name}
               onChange={handleChange}
               required
             />
@@ -55,7 +57,7 @@ const RegistrationForm = () => {
               type="email"
               name="email"
               placeholder="Email"
-              value={formData.email}
+              value={Data.email}
               onChange={handleChange}
               required
             />
@@ -65,7 +67,7 @@ const RegistrationForm = () => {
               type="password"
               name="password"
               placeholder="Password"
-              value={formData.password}
+              value={Data.password}
               onChange={handleChange}
               required
             />
@@ -75,17 +77,17 @@ const RegistrationForm = () => {
               type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
-              value={formData.confirmPassword}
+              value={Data.confirmPassword}
               onChange={handleChange}
               required
             />
           </div>
-       
+
           <div className="form-group">
             <label className="form-label">Role:</label>
             <select
               name="role"
-              value={formData.role}
+              value={Data.role}
               onChange={handleChange}
               className="custom-dropdown"
               required
@@ -97,13 +99,13 @@ const RegistrationForm = () => {
               <option value="Tutor">Tutor</option>
             </select>
           </div>
-        
+
           <div className="form-group">
             <label className="form-label">Date of Birth:</label>
             <input
               type="date"
               name="dob"
-              value={formData.dob}
+              value={Data.dob}
               onChange={handleChange}
               className="custom-date"
               required
@@ -115,8 +117,9 @@ const RegistrationForm = () => {
                 type="radio"
                 name="gender"
                 value="male"
-                checked={formData.gender === "male"}
+                checked={Data.gender === "male"}
                 onChange={handleChange}
+                required
               />
               &nbsp;Male
             </label>
@@ -125,7 +128,7 @@ const RegistrationForm = () => {
                 type="radio"
                 name="gender"
                 value="female"
-                checked={formData.gender === "female"}
+                checked={Data.gender === "female"}
                 onChange={handleChange}
               />
               &nbsp;Female
@@ -135,17 +138,33 @@ const RegistrationForm = () => {
                 type="radio"
                 name="gender"
                 value="other"
-                checked={formData.gender === "other"}
+                checked={Data.gender === "other"}
                 onChange={handleChange}
               />
               &nbsp;Other
             </label>
           </div>
+
           <button type="submit" className="btn-register">
             Register
           </button>
+
+        
+          <p className="signin-link" >
+            Already have an account? <a href="/login">Sign In</a>
+          </p>
         </form>
       </div>
+
+      
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <span className="check-icon ">✔</span>
+            <p>User Registered Successfully!</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
