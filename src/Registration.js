@@ -9,7 +9,6 @@ const RegistrationForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    gender: "",
     role: "",
     dob: "",
   });
@@ -24,15 +23,54 @@ const RegistrationForm = () => {
     setFormData({ ...Data, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const userdata = {
+      name: Data.name,
+      email: Data.email,
+      password: Data.password,
+      dob: Data.dob,
+      role: Data.role
+    };
+  
+    if (Data.password.length !== 8 || Data.password !== Data.confirmPassword) {
+      alert("Password must be exactly 8 characters or confirm password doesn't match.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/Registration", {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify(userdata) 
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert("User Registered successfully");
+        console.log("Server response:", result);
+      } else {
+        console.log("Error posting data:", result.error);
+      }
+  
+    } catch (error) {
+      alert(`Error posting data: ${error}`);
+    }
+  
     console.log("Form Data Submitted:", Data);
     setShowModal(true);
-
-   
+  
     setTimeout(() => {
       setShowModal(false);
-      navigate("/login"); 
+      navigate("/login");
     }, 2000);
   };
 
@@ -111,39 +149,7 @@ const RegistrationForm = () => {
               required
             />
           </div>
-          <div className="form-group gender-group">
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                checked={Data.gender === "male"}
-                onChange={handleChange}
-                required
-              />
-              &nbsp;Male
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                checked={Data.gender === "female"}
-                onChange={handleChange}
-              />
-              &nbsp;Female
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="other"
-                checked={Data.gender === "other"}
-                onChange={handleChange}
-              />
-              &nbsp;Other
-            </label>
-          </div>
+         
 
           <button type="submit" className="btn-register">
             Register

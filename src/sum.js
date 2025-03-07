@@ -7,22 +7,24 @@ const Sum = () => {
     const [num2, setnum2] = useState("")
 
 
-    const HandleApi = async () => {
-        if (!num1 || !num2) {
+    const  HandleApi = async() =>{
+
+        if (!num1||!num2){
             console.log("Values are missing");
             return;
         }
-    
+
         try {
-            const response = await fetch(`http://127.0.0.1:5000/api/sums?a=${num1}&b=${num2}`);
-            const result = await response.json();
-    
-            // Correctly log the extracted value
+            const response = await fetch(`http://127.0.0.1:5000/api/sums?a=${num1}&b=${num2}`)
+            const result = await response.json()
             console.log("Result from BACKEND:", result.Result);
-    
-        } catch (error) {
-            console.log(`Error fetching the response from API: ${error}`);
+
+}catch(error){
+
+            console.log(`error fetching the response from API ${error}`);
+
         }
+
     }
 return (
          <div>
