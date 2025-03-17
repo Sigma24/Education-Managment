@@ -9,8 +9,7 @@ const RegistrationForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "",
-    dob: "",
+    dj: "",
   });
 
 
@@ -34,8 +33,8 @@ const RegistrationForm = () => {
       name: Data.name,
       email: Data.email,
       password: Data.password,
-      dob: Data.dob,
-      role: Data.role
+      dj: Data.dj,
+      
     };
   
     if (Data.password.length !== 8 || Data.password !== Data.confirmPassword) {
@@ -65,7 +64,7 @@ const RegistrationForm = () => {
       alert(`Error posting data: ${error}`);
     }
   
-    console.log("Form Data Submitted:", Data);
+  
     setShowModal(true);
   
     setTimeout(() => {
@@ -121,25 +120,10 @@ const RegistrationForm = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Role:</label>
-            <select
-              name="role"
-              value={Data.role}
-              onChange={handleChange}
-              className="custom-dropdown"
-              required
-            >
-              <option value="">Select Role</option>
-              <option value="Admin">Admin</option>
-              <option value="Student">Student</option>
-              <option value="Teacher">Teacher</option>
-              <option value="Tutor">Tutor</option>
-            </select>
-          </div>
+         
 
           <div className="form-group">
-            <label className="form-label">Date of Birth:</label>
+            <label className="form-label">Date Joined:</label>
             <input
               type="date"
               name="dob"

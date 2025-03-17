@@ -1,0 +1,123 @@
+body {
+  background: linear-gradient(135deg, #02007a, #6200ff);
+  color: #fff;
+  min-height: 100vh;
+}
+
+.auth-container {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(10px);
+}
+
+.registration-box {
+  background: linear-gradient(135deg, #ff260a, #3000b3);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  color: #4CAF50 !important;
+  display: block;
+  margin-bottom: 0.5rem;
+  transform-origin: left;
+  transition: all 0.3s ease;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 10px;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.form-input:focus {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #4CAF50 !important;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.2) !important;
+  transform: scale(1.02);
+}
+
+.register-btn {
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
+  border: none !important;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+}
+
+.back-link {
+  color: #4CAF50 !important;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: #45a049 !important;
+}
+
+.form-group:focus-within .form-label {
+  transform: translateY(-25px) scale(0.8);
+  color: #4CAF50 !important;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.registration-box:hover {
+  animation: float 4s ease-in-out infinite;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .registration-box {
+    margin: 20px;
+    padding: 25px;
+  }
+  
+  .form-input {
+    padding: 10px 15px;
+  }
+}
