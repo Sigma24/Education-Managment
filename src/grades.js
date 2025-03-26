@@ -4,20 +4,23 @@ import "./grades.css";
 
 export default function Grades() {
   const [gradesData, setGradesData] = useState([]);
+  const [student, setStudent] = useState(null);
 
-  // Simulate API call
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("https://api.example.com/grades"); // Replace with your API endpoint
-        const data = await response.json();
-        setGradesData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.role === 'Student') {
+      if (!user.id) {
+        console.error("StudentID ID missing in user data");
+      } else {
+        setStudent(user.id);
+
+        
+        fetch(`http://127.0.0.1:5000/api/StudentGrades?sID=${user.id}`)
+          .then((response) => response.json())
+          .then((data) => setGradesData(data.grades || []))
+          .catch((error) => console.error("Error fetching grades data:", error));
       }
     }
-
-    fetchData();
   }, []);
 
   return (
@@ -34,7 +37,6 @@ export default function Grades() {
         </div>
       </nav>
 
-      {/* Scrollable Table Container */}
       <div className="table-container">
         <table className="table table-bordered">
           <thead>
@@ -48,9 +50,9 @@ export default function Grades() {
             {gradesData.length > 0 ? (
               gradesData.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.teacher}</td>
-                  <td>{item.subject}</td>
-                  <td>{item.grade}</td>
+                  <td>{item.Teacher_Name}</td>
+                  <td>{item.Subject}</td>
+                  <td>{item.Grade}</td>
                 </tr>
               ))
             ) : (

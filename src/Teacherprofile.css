@@ -1,37 +1,55 @@
 body {
-    background-color: #dce3e7;
-  }
+  background-color: #dce3e7;
+}
+
+h2, h3, h4 {
+  font-weight: bold;
   
-  h2, h3, h4 {
-    font-weight: bold;
-  }
+}
+
+.profile-header {
+  background-color: #405692;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  color:black
+}
+
+.str{
+  font-weight: bold;
+}
+
+
+.col-md-4{
+  margin-left: 550px;
   
-  .profile-header {
-    background-color: #a0b2c3;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-  
-  .info-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    color:black;
-  }
-  
-  .info-card h5 {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 15px;
-    color:black;
-  }
-  
-  .navbar-nav .nav-link.active {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  
+
+}
+
+.info-card {
+  background: white;
+  padding: 20px;
+  height: 250px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  color:black;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+
+
+ }
+
+.info-card h5 {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  color:black;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+  text-decoration: underline;
+}

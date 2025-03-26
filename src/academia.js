@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Typography } from "@mui/material";
 import SchoolIcon from "@mui/icons-material/School";
@@ -17,6 +17,19 @@ export default function Academia() {
   const [screen, setscreen] = useState(false)
   const [personal, setpersonal] = useState(false)
   const [profile, setprofile] = useState(false)
+  const [name,setname]=useState("")
+  const [role,setrole]=useState("")
+
+
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        if (!user.id) {
+          console.error("StudentID ID missing in user data");
+        } else {
+          setname(user.name)
+          setrole(user.role)
+}}})
 
 
   if (grades) {
@@ -41,8 +54,8 @@ export default function Academia() {
         Home Page
       </Typography>
       <div className="role-box">
-        <Typography variant="h6">Role: XY</Typography>
-        <Typography variant="h6">Name</Typography>
+        <Typography variant="h6">Role:    {role}</Typography>
+        <Typography variant="h6">Name:    {name}</Typography>
       </div>
       <Row className="mt-4">
         <Col md={3} sm={6} xs={12} className="mb-3">
